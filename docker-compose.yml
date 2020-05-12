@@ -1,0 +1,27 @@
+version: "3"
+services:
+  sidecar.local.multicomm:
+    build:
+      context: .
+      dockerfile: fluent.Dockerfile
+    ports:
+      - 24224:24224
+  wss.local.multicomm:
+    build:
+      context: .
+      dockerfile: wss.Dockerfile
+    ports:
+      - 8080:8080
+    logging:
+      driver: fluentd
+    depends_on:
+      - sidecar.local.multicomm
+  main.local.multicomm:
+    build:
+      context: .
+      dockerfile: main.Dockerfile
+    logging:
+      driver: fluentd
+    depends_on:
+      - sidecar.local.multicomm
+      - wss.local.multicomm

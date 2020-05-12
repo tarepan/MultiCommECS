@@ -1,0 +1,39 @@
+{
+  "family": "multicomm",
+  "executionRoleArn": "arn:aws:iam::516292881072:role/AmazonECSTaskExecutionWithCWLogsRole",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "wss",
+      "image": "httpd:2.4",
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awsfirelens"
+      }
+    },
+    {
+      "name": "sidecar",
+      "image": "fluent/fluent-bit:latest",
+      "essential": true,
+      "firelensConfiguration": {
+        "type": "fluentbit",
+        "options": {
+          "config-file-type": "file",
+          "config-file-value": "/fluent-bit/etc/extends.conf"
+        }
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-group": "multicomm",
+          "awslogs-stream-prefix": "multicommx"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512"
+}
