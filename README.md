@@ -18,11 +18,13 @@ Keys are prepared with ParameterStore&Env
 
 ## Setup
 
-(first time)  
-Prepare an ECS Cluster and Services (Main & WSS).  
-Prepare ECR registries.  
-Prepare IAM (ECS TaskExecution role with cloudwatch log settings).
-Prepare ParameterStore.
+(first time)
+
+1. Prepare an ECS Cluster (proper VPC security) and Services (main & wss).
+2. Prepare ECR registries (main, wss, sidecar)
+3. Prepare IAM (ECS TaskExecution role with cloudwatch log settings).
+4. Prepare ParameterStore.
+5. Prepare AWS access key & secrets in GitHub
 
 (reStart)  
 Set task number in Service = 1.
