@@ -1,11 +1,11 @@
 {
-  "family": "multicomm",
+  "family": "multicommWSS",
   "executionRoleArn": "arn:aws:iam::516292881072:role/AmazonECSTaskExecutionWithCWLogsRole",
   "networkMode": "awsvpc",
   "containerDefinitions": [
     {
       "name": "wss",
-      "image": "httpd:2.4",
+      "image": "516292881072.dkr.ecr.ap-northeast-1.amazonaws.com/multicomm/wss:latest",
       "essential": true,
       "logConfiguration": {
         "logDriver": "awsfirelens"
@@ -13,7 +13,7 @@
     },
     {
       "name": "sidecar",
-      "image": "fluent/fluent-bit:latest",
+      "image": "multicomm/sidecar:latest",
       "essential": true,
       "firelensConfiguration": {
         "type": "fluentbit",
@@ -28,7 +28,7 @@
           "awslogs-create-group": "true",
           "awslogs-region": "ap-northeast-1",
           "awslogs-group": "multicomm",
-          "awslogs-stream-prefix": "multicommx"
+          "awslogs-stream-prefix": "multicommWSS"
         }
       }
     }
