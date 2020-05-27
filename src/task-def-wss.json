@@ -13,7 +13,7 @@
     },
     {
       "name": "sidecar",
-      "image": "multicomm/sidecar:latest",
+      "image": "516292881072.dkr.ecr.ap-northeast-1.amazonaws.com/multicomm/sidecar:74ade916d74370aa476476150955d2c51aafbb18",
       "essential": true,
       "firelensConfiguration": {
         "type": "fluentbit",

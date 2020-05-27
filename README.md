@@ -28,3 +28,13 @@ Keys are prepared with ParameterStore&Env
 
 (reStart)  
 Set task number in Service = 1.
+
+### push taskDef
+
+command: [`aws cli register-task-definition`](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html)  
+this case: `aws ecs register-task-definition --cli-input-json file://./src/task-def-wss.json`
+
+### push cotainer to ECR
+
+password for docker login: `aws ecr get-login-password --region "ap-northeast-1" --profile globaladmin`  
+docker login: `docker login --username AWS -p <password> "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.ap-northeast-1.amazonaws.com"`
